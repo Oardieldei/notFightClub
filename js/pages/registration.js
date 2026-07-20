@@ -1,3 +1,5 @@
+import { createNewPlayer } from "../player-info/create-new-player.js"
+
 export function renderRegistrationPage() {
 	return createRegistrationWrapper()
 }
@@ -41,7 +43,7 @@ function createDescription() {
 }
 
 function createForm() {
-	const form = document.createElement('form')
+	const form = document.createElement('div')
 	form.classList.add('registration-page__form')
 
 	form.append(
@@ -69,6 +71,11 @@ function createButton() {
 	button.classList.add('registration-page__button')
 
 	button.textContent = 'Создать игрока'
+
+	button.addEventListener('click', () => {
+		const input = document.querySelector('.registration-page__input')
+		createNewPlayer(input.value)
+	})
 
 	return button
 }
