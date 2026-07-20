@@ -1,3 +1,5 @@
+import { changePage } from "./pages-manager.js"
+
 export function renderMainPage() {
 	return createMainWrapper()
 }
@@ -56,7 +58,9 @@ function createCreatePlayerButton() {
 	button.classList.add('main-page__button')
 	button.textContent = 'Создать игрока'
 
-	button.dataset.route = 'registration'
+	button.addEventListener('click', () => {
+		changePage('registration')
+	})
 
 	return button
 }
@@ -65,8 +69,6 @@ function createChoosePlayerButton() {
 	const button = document.createElement('button')
 	button.classList.add('main-page__button')
 	button.textContent = 'Выбрать игрока'
-
-	button.dataset.route = 'players'
 
 	return button
 }
