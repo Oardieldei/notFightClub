@@ -1,0 +1,116 @@
+.main-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: calc(100vh - var(--header-height));
+	padding: var(--space-xl) var(--space-lg);
+}
+
+.main-page__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 720px;
+	padding: 48px;
+	background: var(--color-panel);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-xl);
+	backdrop-filter: blur(12px);
+	box-shadow: var(--shadow);
+	text-align: center;
+}
+
+.main-page__title {
+	margin: 0 0 var(--space-md);
+	font-family: var(--font-title);
+	font-size: var(--title-xl);
+	font-weight: 400;
+	line-height: 1.2;
+	color: var(--color-title);
+	text-wrap: balance;
+}
+
+.main-page__description {
+	margin: 0;
+	max-width: 580px;
+	font-size: var(--text-lg);
+	line-height: 1.8;
+	color: var(--color-text-muted);
+}
+
+.main-page__actions {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 360px;
+	margin-top: 48px;
+	gap: var(--space-md);
+}
+
+.main-page__button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: var(--button-height-lg);
+	padding: 0 var(--space-lg);
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid var(--color-accent);
+	border-radius: var(--radius-md);
+	font-family: var(--font-text);
+	font-size: var(--text-md);
+	font-weight: 600;
+	color: var(--color-title);
+	cursor: pointer;
+	transition:
+		background var(--transition),
+		border-color var(--transition),
+		color var(--transition),
+		box-shadow var(--transition);
+}
+
+.main-page__button:hover {
+	background: rgba(216, 180, 106, 0.12);
+	border-color: #f0cf8f;
+	box-shadow: 0 0 24px rgba(216, 180, 106, 0.18);
+}
+
+.main-page__button:active {
+	background: var(--color-accent);
+	color: var(--color-bg);
+}
+
+.main-page__button:focus-visible {
+	outline: none;
+	border-color: #f0cf8f;
+	box-shadow:
+		0 0 0 3px rgba(216, 180, 106, 0.2),
+		0 0 24px rgba(216, 180, 106, 0.2);
+}
+
+@media (max-width: 767px) {
+	.main-page {
+		padding: var(--space-lg) var(--space-sm);
+	}
+
+	.main-page__content {
+		padding: var(--space-lg);
+	}
+
+	.main-page__title {
+		font-size: 36px;
+	}
+
+	.main-page__description {
+		font-size: var(--text-md);
+	}
+
+	.main-page__actions {
+		margin-top: var(--space-xl);
+	}
+
+	.main-page__button {
+		height: var(--button-height);
+	}
+}
