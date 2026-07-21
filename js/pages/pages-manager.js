@@ -1,6 +1,11 @@
 import { renderMainPage } from "./main.js"
 import { renderRegistrationPage } from "./registration.js"
 import { renderPlayerSelectPage } from "./choose-player.js"
+import { renderCharactersPage } from "./characters-list.js"
+import {
+	hideHeader,
+	showHeader
+} from "../header/header.js"
 
 const main = document.querySelector('.main')
 const mainContainer = main.children[0]
@@ -12,13 +17,20 @@ export function changePage(page) {
 
 	switch (page) {
 		case 'main':
+			hideHeader()
 			newContent = renderMainPage()
 			break;
 		case 'registration':
+			hideHeader()
 			newContent = renderRegistrationPage()
 			break;
 		case 'choose-player':
+			hideHeader()
 			newContent = renderPlayerSelectPage()
+			break;
+		case 'characters-list':
+			showHeader()
+			newContent = renderCharactersPage()
 			break;
 
 		default:

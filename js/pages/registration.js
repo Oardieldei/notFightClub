@@ -1,4 +1,5 @@
 import { createNewPlayer } from "../player-info/create-new-player.js"
+import { changePage } from "./pages-manager.js"
 
 export function renderRegistrationPage() {
 	return createRegistrationWrapper()
@@ -75,6 +76,7 @@ function createButton() {
 	button.addEventListener('click', () => {
 		const input = document.querySelector('.registration-page__input')
 		createNewPlayer(input.value)
+		if (input.value !== '') changePage('characters-list')		
 	})
 
 	return button

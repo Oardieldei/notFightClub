@@ -1,3 +1,5 @@
+import { changePage } from "./pages-manager.js"
+
 export function renderPlayerSelectPage() {
 	return createPlayerSelectWrapper()
 }
@@ -143,5 +145,5 @@ function getPlayers() {
 function openPlayer(id) {
 	localStorage.setItem('currentUser', `user_${id}`)
 
-	// переход на страницу игрока
+	changePage('characters-list')
 }

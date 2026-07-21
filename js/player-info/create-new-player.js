@@ -2,8 +2,7 @@ export function createNewPlayer(name) {
 	if (!name) return
 	const newPlayerData = createNewPlayerData(name)
 	const newPlayerId = saveNewPlayer(newPlayerData)
-
-	// открытие страницы с `user_${newPlayerId}`
+	localStorage.setItem('currentUser', `user_${newPlayerId}`)
 }
 
 function saveNewPlayer(data) {
