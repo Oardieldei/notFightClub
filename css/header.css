@@ -87,6 +87,10 @@
 	box-shadow: 0 0 0 3px rgba(216, 180, 106, .18);
 }
 
+.displayNone {
+	display: none;
+}
+
 @media (max-width: 768px) {
 	.header {
 		height: auto;

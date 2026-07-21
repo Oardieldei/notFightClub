@@ -1,5 +1,6 @@
 import { renderMainPage } from "./main.js"
 import { renderRegistrationPage } from "./registration.js"
+import { renderPlayerSelectPage } from "./choose-player.js"
 
 const main = document.querySelector('.main')
 const mainContainer = main.children[0]
@@ -15,6 +16,9 @@ export function changePage(page) {
 			break;
 		case 'registration':
 			newContent = renderRegistrationPage()
+			break;
+		case 'choose-player':
+			newContent = renderPlayerSelectPage()
 			break;
 
 		default:

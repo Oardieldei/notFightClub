@@ -70,5 +70,9 @@ function createChoosePlayerButton() {
 	button.classList.add('main-page__button')
 	button.textContent = 'Выбрать игрока'
 
+	button.addEventListener('click', () => {
+		changePage('choose-player')
+	})
+
 	return button
 }
