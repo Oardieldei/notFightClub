@@ -69,14 +69,16 @@ function createInput() {
 
 function createButton() {
 	const button = document.createElement('button')
-	button.classList.add('registration-page__button')
+	button.classList.add('registration-page__button', 'btn-primary')
 
 	button.textContent = 'Создать игрока'
 
 	button.addEventListener('click', () => {
 		const input = document.querySelector('.registration-page__input')
+		if (input.value === '') return
+		
 		createNewPlayer(input.value)
-		if (input.value !== '') changePage('characters-list')		
+		changePage('characters-list')		
 	})
 
 	return button

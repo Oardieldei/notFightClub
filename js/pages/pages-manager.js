@@ -2,6 +2,8 @@ import { renderMainPage } from "./main.js"
 import { renderRegistrationPage } from "./registration.js"
 import { renderPlayerSelectPage } from "./choose-player.js"
 import { renderCharactersPage } from "./characters-list.js"
+import { renderCreateCharacterPage } from "./create-character.js"
+import { renderEditCharacterPage } from "./edit-character.js"
 import {
 	hideHeader,
 	showHeader
@@ -31,6 +33,14 @@ export function changePage(page) {
 		case 'characters-list':
 			showHeader()
 			newContent = renderCharactersPage()
+			break;
+		case 'create-character':
+			showHeader()
+			newContent = renderCreateCharacterPage()
+			break;
+		case 'edit-character':
+			showHeader()
+			newContent = renderEditCharacterPage()
 			break;
 
 		default:

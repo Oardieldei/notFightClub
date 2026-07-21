@@ -1,5 +1,4 @@
 export function createNewPlayer(name) {
-	if (!name) return
 	const newPlayerData = createNewPlayerData(name)
 	const newPlayerId = saveNewPlayer(newPlayerData)
 	localStorage.setItem('currentUser', `user_${newPlayerId}`)

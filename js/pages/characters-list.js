@@ -1,3 +1,5 @@
+import { changePage } from "./pages-manager.js"
+
 export function renderCharactersPage() {
 	return createCharactersWrapper()
 }
@@ -60,14 +62,14 @@ function createCharactersList() {
 		return list
 	}
 
-	player.characters.forEach(character => {
-		list.append(createCharacterCard(character))
+	player.characters.forEach((character, index) => {
+		list.append(createCharacterCard(character, index))
 	})
 
 	return list
 }
 
-function createCharacterCard(character) {
+function createCharacterCard(character, index) {
 	const card = document.createElement('div')
 	card.classList.add('character-card')
 
@@ -78,7 +80,7 @@ function createCharacterCard(character) {
 	card.append(
 		createCharacterImage(character),
 		createCharacterInfo(character),
-		createCharacterActions()
+		createCharacterActions(character, index)
 	)
 
 	return card
@@ -131,14 +133,31 @@ function createCharacterStats(character) {
 	return stats
 }
 
-function createCharacterActions() {
+function createCharacterActions(character, index) {
 	const actions = document.createElement('div')
 	actions.classList.add('character-card__actions')
 
+	let selectButton
+	if (character.isActive) {
+		selectButton = createButton('На арене', 'character-card__button_arena')
+	} else {
+		selectButton = createButton('Выбрать', 'character-card__button_active')
+		selectButton.addEventListener('click', () => selectCharacter(index))
+	}
+
+	const editButton = createButton('Редактировать')
+	editButton.addEventListener('click', () => {
+		localStorage.setItem('editingCharacterIndex', index)
+		changePage('edit-character')
+	})
+
+	const deleteButton = createButton('Удалить', 'character-card__button_delete')
+	deleteButton.addEventListener('click', () => deleteCharacter(index))
+
 	actions.append(
-		createButton('Выбрать', 'character-card__button_active'),
-		createButton('Переименовать'),
-		createButton('Удалить', 'character-card__button_delete')
+		selectButton,
+		editButton,
+		deleteButton
 	)
 
 	return actions
@@ -155,6 +174,42 @@ function createButton(text, className = '') {
 	button.textContent = text
 
 	return button
+}
+
+function selectCharacter(index) {
+	const currentUser = localStorage.getItem('currentUser')
+	if (!currentUser) return
+
+	const player = JSON.parse(localStorage.getItem(currentUser))
+	if (!player || !player.characters[index]) return
+
+	player.characters.forEach((character, i) => {
+		character.isActive = i === index
+	})
+
+	localStorage.setItem(currentUser, JSON.stringify(player))
+	changePage('characters-list')
+}
+
+function deleteCharacter(index) {
+	const currentUser = localStorage.getItem('currentUser')
+	if (!currentUser) return
+
+	const player = JSON.parse(localStorage.getItem(currentUser))
+	if (!player || !player.characters[index]) return
+
+	const confirmed = confirm(`Удалить персонажа "${player.characters[index].name}"?`)
+	if (!confirmed) return
+
+	player.characters.splice(index, 1)
+
+	const hasActive = player.characters.some(character => character.isActive)
+	if (!hasActive && player.characters.length > 0) {
+		player.characters[0].isActive = true
+	}
+
+	localStorage.setItem(currentUser, JSON.stringify(player))
+	changePage('characters-list')
 }
 
 function createEmptyState() {
@@ -174,8 +229,12 @@ function createCreateButton() {
 	wrapper.classList.add('characters-page__actions')
 
 	const button = document.createElement('button')
-	button.classList.add('characters-page__button')
+	button.classList.add('characters-page__button', 'btn-primary')
 	button.textContent = 'Создать персонажа'
+
+	button.addEventListener('click', () => {
+		changePage('create-character')
+	})
 
 	wrapper.append(button)
 
