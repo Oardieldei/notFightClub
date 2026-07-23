@@ -1,4 +1,5 @@
 import { changePage } from "./pages-manager.js"
+import { noImage } from "../data/noImage.js"
 
 export function renderCharactersPage() {
 	return createCharactersWrapper()
@@ -90,8 +91,11 @@ function createCharacterImage(character) {
 	const image = document.createElement('img')
 	image.classList.add('character-card__image')
 
-	image.src = character.imageUrl || './img/no-image.png'
+	image.src = character.imageUrl || noImage
 	image.alt = character.name
+	image.onerror = () => {
+		image.src = noImage
+	}
 
 	return image
 }

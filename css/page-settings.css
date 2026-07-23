@@ -143,7 +143,6 @@
 .settings-page__button:hover {
 	background: rgba(255, 255, 255, .08);
 	border-color: #f2cd82;
-	transform: translateY(-2px);
 	box-shadow: var(--shadow-hover);
 }
 

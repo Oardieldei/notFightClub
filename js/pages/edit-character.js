@@ -1,12 +1,6 @@
 import { changePage } from "./pages-manager.js"
-
-const characterImages = [
-	'./img/images.jpg',
-	'./img/images (1).jpg',
-	'./img/images (2).jpg',
-	'./img/images (3).jpg',
-	'./img/images (4).jpg'
-]
+import { characterImages } from "../data/characterImages.js"
+import { noImage } from "../data/noImage.js"
 
 export function renderEditCharacterPage() {
 	return createMainWrapper()
@@ -108,6 +102,9 @@ function createImageSelection(character) {
 		imageElement.classList.add('edit-character-page__image')
 		imageElement.src = image
 		imageElement.alt = `Персонаж ${index + 1}`
+		imageElement.onerror = () => {
+			imageElement.src = noImage
+		}
 
 		card.dataset.image = image
 
