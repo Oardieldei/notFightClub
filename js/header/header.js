@@ -12,6 +12,11 @@ export function addHeaderActions() {
 	charactersButton.addEventListener('click', () => {
 		changePage('characters-list')
 	})
+
+	const settingsButton = document.querySelector('.header__button_profile')
+	settingsButton.addEventListener('click', () => {
+		changePage('settings')
+	})
 }
 
 export function hideHeader() {

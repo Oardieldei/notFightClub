@@ -4,6 +4,7 @@ import { renderPlayerSelectPage } from "./choose-player.js"
 import { renderCharactersPage } from "./characters-list.js"
 import { renderCreateCharacterPage } from "./create-character.js"
 import { renderEditCharacterPage } from "./edit-character.js"
+import { renderSettingsPage } from "./settings.js"
 import {
 	hideHeader,
 	showHeader
@@ -41,6 +42,10 @@ export function changePage(page) {
 		case 'edit-character':
 			showHeader()
 			newContent = renderEditCharacterPage()
+			break;
+		case 'settings':
+			showHeader()
+			newContent = renderSettingsPage()
 			break;
 
 		default:
