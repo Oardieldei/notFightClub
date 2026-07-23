@@ -1,17 +1,13 @@
 import { enemies } from "../data/enemies.js"
-
-function randomNum(min, max) {
-  let rand = min + Math.random() * (max + 1 - min)
-  return Math.floor(rand)
-}
+import { randomNum } from "../utils/random.js"
 
 function chooseEnemy() {
-	const index = randomNum(0, enemies.hength - 1)
+	const index = randomNum(0, enemies.length - 1)
 
 	return enemies[index]
 }
 
-export function getCurrentFighterInfo() {
+export function getEnemyFighterInfo() {
 	const newEnemy = structuredClone(chooseEnemy())
 
 	newEnemy.hp = randomNum(180, 220)

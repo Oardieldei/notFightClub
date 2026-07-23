@@ -1,8 +1,8 @@
 let battleState = null
 
 export function checkSavingFight() {
-	if (localStorage.getItem(currentFight)) {
-		battleState = JSON.parse(localStorage.getItem(currentFight))
+	if (localStorage.getItem('currentFight')) {
+		setBattleState(JSON.parse(localStorage.getItem('currentFight')))
 	}
 }
 
@@ -36,24 +36,15 @@ export function startBattle(player, enemy) {
 	}
 }
 
-export function endBattle() {
-	battleState = null
+export function clearBattle() {
+	setBattleState(null)
 }
 
-function getRandomZones(all, num) {
-    if (num > all) num = all
-    
-    const uniqueIndices = new Set()
-    
-    while (uniqueIndices.size < num) {
-        const random = randomNum(0, all - 1)
-        uniqueIndices.add(random)
-    }
-    
-    return Array.from(uniqueIndices)
+
+export function getBattleState() {
+	return battleState
 }
 
-function randomNum(min, max) {
-  let rand = min + Math.random() * (max + 1 - min)
-  return Math.floor(rand)
+export function setBattleState(newState) {
+    battleState = newState
 }

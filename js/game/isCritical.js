@@ -1,10 +1,7 @@
-function randomNum(min, max) {
-  let rand = min + Math.random() * (max + 1 - min)
-  return Math.floor(rand)
-}
+import { randomNum } from "../utils/random.js"
 
 export function isCrit(chance) {
-	const dice = randomNum(min, 99)
+	const dice = randomNum(0, 99)
 
 	return dice < chance
 }
