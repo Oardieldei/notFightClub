@@ -1,9 +1,20 @@
 import { getBattleState } from '../game/battleState.js'
 import { zones } from '../data/zones.js'
+import { turn } from '../game/turns.js'
+import { endTheFight } from '../game/fightEnd.js'
+import { saveBattle } from '../game/savingBattle.js'
+import { changePage } from './pages-manager.js'
+
+const selectedZones = {
+	attack: [],
+	defend: []
+}
 
 
 export function renderBattlePage() {
-	return createBattleWrapper()
+	const page = createBattleWrapper()
+	restoreSelectedZones(page)
+	return page
 }
 
 
@@ -178,13 +189,40 @@ function createZoneBlock(title, type, maxSelection) {
 		button.dataset.zone = index
 		button.textContent = zone.title
 
-		/*
-			Здесь нужен обработчик выбора зоны.
-			После выбора:
-			- добавить/убрать класс battle-page__zone--selected
-			- обновить счетчик выбранных зон
-			- отключить остальные зоны через battle-page__zone--disabled
-		*/
+		button.addEventListener('click', () => {
+			const startButton = document.querySelector('.battle-page__button')
+			const battle = getBattleState()
+			const currentSelected = selectedZones[type]
+			const zoneIndex = currentSelected.indexOf(index)
+
+			if (zoneIndex !== -1) {
+				// Зона уже выбрана — отменяем выбор
+				currentSelected.splice(zoneIndex, 1)
+				button.classList.remove('battle-page__zone--selected')
+			} else {
+				// Новая зона — добавляем
+				if (currentSelected.length >= maxSelection) {
+					// Удаляем самую старую выбранную зону (FIFO)
+					const oldest = currentSelected.shift()
+					const oldestButton = zonesContainer.querySelector(
+						`.battle-page__zone[data-zone="${oldest}"]`
+					)
+					if (oldestButton) {
+						oldestButton.classList.remove('battle-page__zone--selected')
+					}
+				}
+				currentSelected.push(index)
+				button.classList.add('battle-page__zone--selected')
+			}
+
+			// Обновляем счётчик в заголовке
+			heading.textContent = `${title} (${currentSelected.length}/${maxSelection})`
+
+			// Проверяем, можно ли активировать кнопку
+			const attackReady = selectedZones.attack.length === battle.playerState.attackZones
+			const defendReady = selectedZones.defend.length === battle.playerState.defendZones
+			startButton.disabled = !(attackReady && defendReady)
+		})
 
 		zonesContainer.append(button)
 	})
@@ -205,12 +243,107 @@ function createStartButton() {
 	button.textContent = 'Начать раунд'
 	button.disabled = true
 
-	/*
-		Здесь нужен обработчик начала раунда.
-		Перед запуском проверять выбранные зоны атаки и защиты.
-	*/
+	button.addEventListener('click', () => {
+		const battleState = getBattleState()
+		if (!battleState) return
+
+		const result = turn(selectedZones.attack, selectedZones.defend)
+
+		// Сначала обновляем UI — battleState ещё жив
+		saveBattle(battleState)
+		updateFighterHP(battleState.playerState, battleState.enemyState)
+		updateRoundCounter(battleState)
+		appendNewLogs(battleState)
+
+		// Если бой завершился — вызываем endTheFight и показываем результат
+		if (result === 'player_wins') {
+			endTheFight(battleState, true)
+			showBattleResult(battleState)
+		} else if (result === 'enemy_wins') {
+			endTheFight(battleState, false)
+			showBattleResult(battleState)
+		}
+	})
 
 	return button
+}
+
+
+function updateFighterHP(playerState, enemyState) {
+	const fighters = document.querySelectorAll('.battle-page__fighter')
+
+	// Первый блок — игрок, последний — враг
+	const playerFighter = fighters[0]
+	const enemyFighter = fighters[1]
+
+	updateHPBlock(playerFighter, playerState)
+	updateHPBlock(enemyFighter, enemyState)
+}
+
+
+function updateHPBlock(fighter, state) {
+	const hpText = fighter.querySelector('.battle-page__hp-text')
+	const hpBar = fighter.querySelector('.battle-page__hp-bar')
+
+	hpText.textContent = `${state.currentHP} / ${state.maxHP}`
+
+	const percent = state.currentHP / state.maxHP * 100
+	hpBar.style.setProperty('--hp-percent', `${percent}%`)
+}
+
+
+function updateRoundCounter(battleState) {
+	const counter = document.querySelector('.battle-page__round')
+	counter.textContent = `Раунд ${battleState.turnCounter + 1}`
+}
+
+
+function appendNewLogs(battleState) {
+	const logsContainer = document.querySelector('.battle-page__logs')
+	const lastRoundLogs = battleState.battleLogs.at(-1)
+
+	if (lastRoundLogs) {
+		lastRoundLogs.forEach(log => {
+			logsContainer.prepend(createLog(log))
+		})
+	}
+}
+
+
+function showBattleResult(lastState) {
+	const center = document.querySelector('.battle-page__center')
+	const result = center.querySelector('.battle-page__result')
+
+	const isWin = lastState.enemyState.currentHP === 0
+	const winnerName = isWin ? lastState.playerState.name : lastState.enemyState.name
+
+	center.classList.add('battle-page__center--finished')
+
+	selectedZones.attack = []
+	selectedZones.defend = []
+
+	const titleClass = isWin ? 'battle-page__result-title--victory' : 'battle-page__result-title--defeat'
+
+	result.innerHTML = `
+		<h2 class="battle-page__result-title ${titleClass}">
+			${isWin ? `${winnerName} побеждает!` : 'Поражение'}
+		</h2>
+
+		<div class="battle-page__result-buttons">
+			<button class="battle-page__result-button" data-action="characters">
+				Выбрать персонажа
+			</button>
+			<button class="battle-page__result-button" data-action="arena">
+				На арену
+			</button>
+		</div>
+	`
+
+	result.querySelector('[data-action="characters"]')
+		.addEventListener('click', () => changePage('characters-list'))
+
+	result.querySelector('[data-action="arena"]')
+		.addEventListener('click', () => changePage('arena-start'))
 }
 
 
@@ -218,16 +351,6 @@ function createBattleResult() {
 	const result = document.createElement('div')
 
 	result.classList.add('battle-page__result')
-
-	result.innerHTML = `
-		<h2 class="battle-page__result-title">
-			Победа!
-		</h2>
-
-		<p class="battle-page__result-text">
-			Бой завершен
-		</p>
-	`
 
 	return result
 }
@@ -238,12 +361,15 @@ function createBattleLogs(battleState) {
 
 	logs.classList.add('battle-page__logs')
 
-	battleState.battleLogs.forEach(roundLogs => {
-		roundLogs.forEach(log => {
-			logs.prepend(createLog(log))
+	if (battleState.battleLogs) {
+		battleState.battleLogs.forEach(roundLogs => {
+			if (roundLogs) {
+				roundLogs.forEach(log => {
+					logs.prepend(createLog(log))
+				})
+			}
 		})
-	})
-
+	}
 
 	return logs
 }
@@ -251,10 +377,72 @@ function createBattleLogs(battleState) {
 
 function createLog(log) {
 	const item = document.createElement('p')
-
 	item.classList.add('battle-page__log')
+	item.innerHTML = createReadableLog(log)
+	return item
+}
 
-	item.innerHTML = log
 
-	return JSON.stringify(log)
+function restoreSelectedZones(page) {
+	const sections = page.querySelectorAll('.battle-page__section')
+
+	sections.forEach(section => {
+		const firstButton = section.querySelector('.battle-page__zone')
+		if (!firstButton) return
+
+		const type = firstButton.dataset.type
+		const zones = selectedZones[type]
+		const heading = section.querySelector('.battle-page__section-title')
+
+		// Восстанавливаем выделение
+		zones.forEach(index => {
+			const button = section.querySelector(`.battle-page__zone[data-zone="${index}"]`)
+			if (button) {
+				button.classList.add('battle-page__zone--selected')
+			}
+		})
+
+		// Восстанавливаем счётчик
+		const count = zones.length
+		if (heading) {
+			const match = heading.textContent.match(/\/(\d+)/)
+			if (match) {
+				heading.textContent = `${type === 'attack' ? 'Атака' : 'Защита'} (${count}/${match[1]})`
+			}
+		}
+	})
+
+	// Активируем кнопку, если все зоны выбраны
+	const startButton = page.querySelector('.battle-page__button')
+	if (startButton) {
+		const battle = getBattleState()
+		if (battle) {
+			const attackReady = selectedZones.attack.length === battle.playerState.attackZones
+			const defendReady = selectedZones.defend.length === battle.playerState.defendZones
+			startButton.disabled = !(attackReady && defendReady)
+		}
+	}
+}
+
+
+function createReadableLog(log) {
+	let result = ''
+
+	if (log.isBlocked && log.isCritical) {
+		result = `<span class="battle-log__attacker">${log.attackerName}</span> бьет врага в <span class="battle-log__zone">${zones[log.attackZone].alt}</span> и пробивает защиту. Критический удар! <span class="battle-log__target">${log.defenderName}</span> получает <span class="battle-log__damage">${log.damage}</span> урона.`
+	}
+
+	if (log.isBlocked && !log.isCritical) {
+		result = `<span class="battle-log__attacker">${log.attackerName}</span> бьет врага в <span class="battle-log__zone">${zones[log.attackZone].alt}</span>, но <span class="battle-log__target">${log.defenderName}</span> успешно блокирует удар.`
+	}
+
+	if (!log.isBlocked && log.isCritical) {
+		result = `<span class="battle-log__attacker">${log.attackerName}</span> бьет врага в <span class="battle-log__zone">${zones[log.attackZone].alt}</span>. Критический удар! <span class="battle-log__target">${log.defenderName}</span> получает <span class="battle-log__damage">${log.damage}</span> урона.`
+	}
+
+	if (!log.isBlocked && !log.isCritical) {
+		result = `<span class="battle-log__attacker">${log.attackerName}</span> бьет врага в <span class="battle-log__zone">${zones[log.attackZone].alt}</span> и попадает. <span class="battle-log__target">${log.defenderName}</span> получает <span class="battle-log__damage">${log.damage}</span> урона.`
+	}
+
+	return result
 }

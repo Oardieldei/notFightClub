@@ -124,13 +124,17 @@ function createCharacterStats(character) {
 	const stats = document.createElement('div')
 	stats.classList.add('character-card__stats')
 
+	const total = character.arena.win + character.arena.lose
+	const winPercent = total ? Math.round(character.arena.win / total * 100) : 0
+	const losePercent = total ? Math.round(character.arena.lose / total * 100) : 0
+
 	const win = document.createElement('span')
 	win.classList.add('character-card__win')
-	win.textContent = `Победы: ${character.arena.win}%`
+	win.textContent = `Победы: ${winPercent}%`
 
 	const lose = document.createElement('span')
 	lose.classList.add('character-card__lose')
-	lose.textContent = `Поражения: ${character.arena.lose}%`
+	lose.textContent = `Поражения: ${losePercent}%`
 
 	stats.append(win, lose)
 

@@ -84,19 +84,20 @@ export function turn(attackZonesArray, defendZonesArray) {
 	playerTurn(battle, attackZonesArray)
 
 	if (battle.enemyState.currentHP === 0) {
-		endTheFight(battle, true)
-		return
+		return 'player_wins'
 	}
 
 	enemyTurn(battle, defendZonesArray)
 
 	if (battle.playerState.currentHP === 0) {
-		endTheFight(battle, false)
+		return 'enemy_wins'
 	}
+
+	return null
 }
 
 function nextTurn(battle) {
 	battle.turnCounter++
 	// отрисовать номер раунда на странице
-	// отсировать логи (функцию сделать в logs.js)
+	// отсировать логи 
 }

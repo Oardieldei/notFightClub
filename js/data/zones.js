@@ -12,11 +12,11 @@ export const zones = [
 		alt: 'живот'
 	},
 	{
-		title: 'рука',
-		alt: 'руку'
+		title: 'спина',
+		alt: 'спину'
 	},
 	{
-		title: 'нога',
-		alt: 'ногу'
+		title: 'ноги',
+		alt: 'ноги'
 	}
 ]
