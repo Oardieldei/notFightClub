@@ -20,8 +20,7 @@ function getRandomZonesChoice(num) {
 	return Array.from(uniqueIndices)
 }
 
-function playerAttackZone(attackZone, defendZonesArray) {
-	const battle = getBattleState()
+function playerAttackZone(battle, attackZone, defendZonesArray) {
 	const isBlocked = defendZonesArray.includes(attackZone)
 	const isCritical = isCrit(battle.playerState.critChancePercent)
 	let damage = 0
@@ -40,24 +39,17 @@ function playerAttackZone(attackZone, defendZonesArray) {
 	}
 }
 
-export function playerTurn(attackZonesArray) {
-	const battle = getBattleState()
+function playerTurn(battle, attackZonesArray) {
 	const defendZonesArray = getRandomZonesChoice(battle.enemyState.defendZones)
 
 	for (const attackZone of attackZonesArray) {
-		const newAttack = playerAttackZone(attackZone, defendZonesArray)
+		const newAttack = playerAttackZone(battle, attackZone, defendZonesArray)
 		battle.enemyState.currentHP = Math.max(0, battle.enemyState.currentHP - newAttack.damage)
-		addLogToBattle(newAttack)
-
-		if (battle.enemyState.currentHP === 0) {
-			endTheFight(true)
-			return
-		}
+		addLogToBattle(battle, newAttack)
 	}
 }
 
-function enemyAttackZone(attackZone, defendZonesArray) {
-	const battle = getBattleState()
+function enemyAttackZone(battle, attackZone, defendZonesArray) {
 	const isBlocked = defendZonesArray.includes(attackZone)
 	const isCritical = isCrit(battle.enemyState.critChancePercent)
 	let damage = 0
@@ -76,19 +68,35 @@ function enemyAttackZone(attackZone, defendZonesArray) {
 	}
 }
 
-export function enemyTurn(defendZonesArray) {
-	const battle = getBattleState()
+function enemyTurn(battle, defendZonesArray) {
 	const attackZonesArray = getRandomZonesChoice(battle.enemyState.attackZones)
 
 	for (const attackZone of attackZonesArray) {
-		const newAttack = enemyAttackZone(attackZone, defendZonesArray)
+		const newAttack = enemyAttackZone(battle, attackZone, defendZonesArray)
 		battle.playerState.currentHP = Math.max(0, battle.playerState.currentHP - newAttack.damage)
-		addLogToBattle(newAttack)
-
-		if (battle.playerState.currentHP === 0) {
-			endTheFight(false)
-			return
-		}
+		addLogToBattle(battle, newAttack)
 	}
 }
 
+export function turn(attackZonesArray, defendZonesArray) {
+	const battle = getBattleState()
+	nextTurn(battle)
+	playerTurn(battle, attackZonesArray)
+
+	if (battle.enemyState.currentHP === 0) {
+		endTheFight(battle, true)
+		return
+	}
+
+	enemyTurn(battle, defendZonesArray)
+
+	if (battle.playerState.currentHP === 0) {
+		endTheFight(battle, false)
+	}
+}
+
+function nextTurn(battle) {
+	battle.turnCounter++
+	// отрисовать номер раунда на странице
+	// отсировать логи (функцию сделать в logs.js)
+}

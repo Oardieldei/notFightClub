@@ -9,6 +9,7 @@ import {
 	hideHeader,
 	showHeader
 } from "../header/header.js"
+import { checkBattleStatus } from "../game/savingBattle.js"
 
 const main = document.querySelector('.main')
 const mainContainer = main.children[0]
@@ -32,6 +33,10 @@ export function changePage(page) {
 			newContent = renderPlayerSelectPage()
 			break;
 		case 'characters-list':
+			if (checkBattleStatus()) {
+				alert('Нельзя менять персонажей во время боя')
+				return
+			}
 			showHeader()
 			newContent = renderCharactersPage()
 			break;

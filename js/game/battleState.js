@@ -1,12 +1,19 @@
+import {
+	saveBattleStatus,
+	loadBattle,
+	checkBattleStatus
+} from "./savingBattle.js"
+
 let battleState = null
 
-export function checkSavingFight() {
-	if (localStorage.getItem('currentFight')) {
-		setBattleState(JSON.parse(localStorage.getItem('currentFight')))
+export function fillBattleState() {
+	if (checkBattleStatus()) {
+		battleState = loadBattle()
+		return
 	}
 }
 
-export function startBattle(player, enemy) {
+export function createBattle(player, enemy) {
 	battleState = {
 		playerState: {
 			name: player.name,
@@ -34,17 +41,15 @@ export function startBattle(player, enemy) {
 		turnCounter: 0,
 		battleLogs: []
 	}
+
+	saveBattleStatus(true)
 }
 
 export function clearBattle() {
-	setBattleState(null)
+	battleState = null
 }
 
 
 export function getBattleState() {
 	return battleState
-}
-
-export function setBattleState(newState) {
-    battleState = newState
 }

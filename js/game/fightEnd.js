@@ -1,10 +1,7 @@
-import {
-	clearBattle,
-	getBattleState
-} from "./battleState.js"
+import { clearBattle } from "./battleState.js"
+import { saveBattleStatus } from "./savingBattle.js"
 
-function changePlayerStatistic(isWin) {
-	const battle = getBattleState()
+function changePlayerStatistic(battle, isWin) {
 	const currentUser = localStorage.getItem('currentUser')
 	const playerData = JSON.parse(localStorage.getItem(currentUser))
 	const fighter = playerData.characters[battle.playerState.index]
@@ -18,9 +15,10 @@ function changePlayerStatistic(isWin) {
 	localStorage.setItem(currentUser, JSON.stringify(playerData))
 }
 
-export function endTheFight(isWin) {
-	changePlayerStatistic(isWin)
+export function endTheFight(battle, isWin) {
+	changePlayerStatistic(battle, isWin)
 	// отобразить страницу победы/проигрыша
 	clearBattle()
+	saveBattleStatus(false)
 	// ничего не забыл?
 }
