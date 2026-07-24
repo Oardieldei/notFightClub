@@ -1,7 +1,8 @@
 import {
 	saveBattleStatus,
 	loadBattle,
-	checkBattleStatus
+	checkBattleStatus,
+	saveBattle
 } from "./savingBattle.js"
 
 let battleState = null
@@ -43,6 +44,7 @@ export function createBattle(player, enemy) {
 	}
 
 	saveBattleStatus(true)
+	saveBattle(battleState)
 }
 
 export function clearBattle() {

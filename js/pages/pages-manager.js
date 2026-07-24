@@ -5,18 +5,19 @@ import { renderCharactersPage } from "./characters-list.js"
 import { renderCreateCharacterPage } from "./create-character.js"
 import { renderEditCharacterPage } from "./edit-character.js"
 import { renderSettingsPage } from "./settings.js"
+import { renderArenaStartPage } from "./arena-start.js"
+import { renderBattlePage } from "./arena-fight.js"
 import {
 	hideHeader,
 	showHeader
 } from "../header/header.js"
 import { checkBattleStatus } from "../game/savingBattle.js"
+import { fillBattleState } from "../game/battleState.js"
 
 const main = document.querySelector('.main')
 const mainContainer = main.children[0]
 
 export function changePage(page) {
-	mainContainer.innerHTML = ''
-
 	let newContent
 
 	switch (page) {
@@ -52,10 +53,19 @@ export function changePage(page) {
 			showHeader()
 			newContent = renderSettingsPage()
 			break;
+		case 'arena-start':
+			showHeader()
+			newContent = renderArenaStartPage()
+			break;
+		case 'arena-fight':
+			showHeader()
+			fillBattleState()  
+			newContent = renderBattlePage()
+			break;
 
 		default:
 			break;
 	}
-
+	mainContainer.innerHTML = ''
 	mainContainer.append(newContent)
 }

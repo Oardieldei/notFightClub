@@ -1,0 +1,110 @@
+.arena-start-page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100vh - var(--header-height));
+	padding: var(--space-xl) 0;
+}
+
+.arena-start-page__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-lg);
+	width: min(100%, 720px);
+	padding: var(--space-xl);
+	background: var(--color-panel);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-xl);
+	backdrop-filter: blur(12px);
+	box-shadow: var(--shadow);
+	text-align: center;
+}
+
+.arena-start-page__title {
+	margin: 0;
+	font-family: var(--font-title);
+	font-size: var(--title-xl);
+	font-weight: 400;
+	color: var(--color-title);
+	line-height: 1.15;
+	text-wrap: balance;
+}
+
+.arena-start-page__description {
+	margin: 0;
+	max-width: 560px;
+	font-size: var(--text-lg);
+	line-height: 1.7;
+	color: var(--color-text-muted);
+	text-wrap: pretty;
+}
+
+.arena-start-page__actions {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: var(--space-sm);
+}
+
+.arena-start-page__button {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 260px;
+	height: var(--button-height-lg);
+	padding: 0 var(--space-xl);
+	background: transparent;
+	border: 1px solid var(--color-accent);
+	border-radius: var(--radius-md);
+	font: inherit;
+	font-size: var(--text-md);
+	font-weight: 600;
+	color: var(--color-accent);
+	cursor: pointer;
+	transition:
+		background var(--transition),
+		color var(--transition),
+		border-color var(--transition),
+		transform var(--transition),
+		box-shadow var(--transition);
+}
+
+.arena-start-page__button:hover {
+	background: var(--color-accent);
+	color: var(--color-bg);
+	box-shadow: 0 0 24px rgba(216, 180, 106, .25);
+	transform: translateY(-2px);
+}
+
+.arena-start-page__button:active {
+	transform: translateY(0);
+}
+
+.arena-start-page__button:focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 4px;
+}
+
+@media (max-width: 767px) {
+	.arena-start-page {
+		padding: var(--space-lg) 0;
+	}
+
+	.arena-start-page__content {
+		padding: var(--space-lg);
+	}
+
+	.arena-start-page__title {
+		font-size: 36px;
+	}
+
+	.arena-start-page__description {
+		font-size: var(--text-md);
+	}
+
+	.arena-start-page__button {
+		width: 100%;
+		min-width: 0;
+	}
+}

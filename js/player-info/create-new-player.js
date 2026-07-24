@@ -22,6 +22,8 @@ function saveNewPlayer(data) {
 function createNewPlayerData(playerName) {
 	return {
 		name: playerName,
-		characters: []
+		characters: [],
+		battleStatus: false,
+		battleState: null
 	}
 }

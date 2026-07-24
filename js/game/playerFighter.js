@@ -10,7 +10,8 @@ export function getCurrentFighterInfo() {
 	const player = getCurrentPlayer()
 
 	const currentIndex = player.characters.findIndex(character => character.isActive)
-
+	if (currentIndex === -1) return false
+	
 	const currentImgUrl = player.characters[currentIndex].imageUrl
 	const currentName = player.characters[currentIndex].name
 

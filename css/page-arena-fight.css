@@ -1,0 +1,345 @@
+.battle-page {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xl);
+}
+
+.battle-page__arena {
+	display: grid;
+	grid-template-columns: minmax(240px, 1fr) minmax(360px, 480px) minmax(240px, 1fr);
+	gap: var(--space-xl);
+	align-items: start;
+}
+
+.battle-page__fighter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--space-md);
+	padding: var(--space-md);
+	background: var(--color-panel);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-xl);
+	backdrop-filter: blur(12px);
+	box-shadow: var(--shadow);
+}
+
+.battle-page__avatar {
+	width: 100%;
+	max-width: 240px;
+	object-fit: cover;
+	border-radius: var(--radius-lg);
+	border: 2px solid var(--color-accent);
+	background: rgba(255, 255, 255, .04);
+}
+
+.battle-page__name {
+	margin: 0;
+	font-family: var(--font-title);
+	font-size: var(--title-lg);
+	color: var(--color-title);
+	text-align: center;
+}
+
+.battle-page__hp {
+	width: 100%;
+	max-width: 240px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xs);
+}
+
+.battle-page__hp-text {
+	font-size: var(--text-sm);
+	color: var(--color-text);
+	text-align: center;
+	font-weight: 600;
+}
+
+.battle-page__hp-bar {
+	position: relative;
+	height: 14px;
+	border-radius: var(--radius-round);
+	background: rgba(255, 255, 255, .08);
+	overflow: hidden;
+}
+
+.battle-page__hp-bar::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	width: var(--hp-percent);
+	background: linear-gradient(90deg, #4ed66d 0%, #8fe86d 100%);
+	transition: width var(--transition);
+}
+
+.battle-page__center {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-lg);
+	padding: var(--space-lg);
+	background: var(--color-panel);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-xl);
+	backdrop-filter: blur(12px);
+	box-shadow: var(--shadow);
+}
+
+.battle-page__controls {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-lg);
+}
+
+.battle-page__result {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-lg);
+	min-height: 420px;
+	text-align: center;
+}
+
+.battle-page__center--finished .battle-page__controls {
+	display: none;
+}
+
+.battle-page__center--finished .battle-page__result {
+	display: flex;
+}
+
+.battle-page__result-title {
+	margin: 0;
+	font-family: var(--font-title);
+	font-size: 40px;
+}
+
+.battle-page__result-title--victory {
+	color: var(--color-success);
+}
+
+.battle-page__result-title--defeat {
+	color: var(--color-danger);
+}
+
+.battle-page__result-text {
+	margin: 0;
+	color: var(--color-text-muted);
+	line-height: 1.6;
+	text-align: center;
+}
+
+.battle-page__round {
+	text-align: center;
+	font-family: var(--font-title);
+	font-size: var(--title-lg);
+	color: var(--color-accent);
+}
+
+.battle-page__sections {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--space-lg);
+}
+
+.battle-page__section {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-sm);
+}
+
+.battle-page__section-title {
+	margin: 0;
+	text-align: center;
+	font-size: var(--text-lg);
+	font-weight: 700;
+	color: var(--color-title);
+}
+
+.battle-page__zones {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-sm);
+}
+
+.battle-page__zone {
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 var(--space-sm);
+	background: rgba(255,255,255,.04);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	color: var(--color-text);
+	cursor: pointer;
+	user-select: none;
+	font-weight: 600;
+	text-align: center;
+	transition: background var(--transition), border-color var(--transition), transform var(--transition), opacity var(--transition);
+}
+
+.battle-page__zone:hover {
+	background: rgba(255,255,255,.08);
+	border-color: var(--color-accent);
+}
+
+.battle-page__zone--selected {
+	background: rgba(216,180,106,.18);
+	border-color: var(--color-accent);
+	color: var(--color-accent);
+}
+
+.battle-page__zone--disabled {
+	opacity: .35;
+	cursor: default;
+	pointer-events: none;
+}
+
+.battle-page__button {
+	height: var(--button-height-lg);
+	border: 1px solid var(--color-accent);
+	border-radius: var(--radius-md);
+	background: transparent;
+	color: var(--color-accent);
+	font-size: var(--text-md);
+	font-weight: 700;
+	cursor: pointer;
+	transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+
+.battle-page__button:hover:not(:disabled) {
+	background: var(--color-accent);
+	color: #111;
+}
+
+.battle-page__button:disabled {
+	opacity: .45;
+	cursor: default;
+}
+
+.battle-page__logs {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-sm);
+	max-height: 360px;
+	padding: var(--space-md);
+	background: var(--color-panel);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-xl);
+	backdrop-filter: blur(12px);
+	box-shadow: var(--shadow);
+	overflow-y: auto;
+}
+
+.battle-page__logs:empty::before {
+	content: 'История боя пока пуста';
+	color: var(--color-text-muted);
+	text-align: center;
+	padding: var(--space-lg);
+}
+
+.battle-page__log {
+	margin: 0;
+	line-height: 1.7;
+	font-size: var(--text-md);
+	color: var(--color-text);
+	word-break: break-word;
+}
+
+.battle-log__attacker {
+	color: var(--color-accent);
+	font-weight: 700;
+}
+
+.battle-log__target {
+	color: var(--color-title);
+	font-weight: 700;
+}
+
+.battle-log__damage {
+	color: var(--color-damage);
+	font-weight: 700;
+}
+
+.battle-log__critical {
+	color: var(--color-critical);
+	font-weight: 700;
+}
+
+.battle-log__block {
+	color: var(--color-block);
+	font-weight: 700;
+}
+
+.battle-log__zone {
+	color: var(--color-dodge);
+	font-weight: 700;
+}
+
+.battle-page__logs::-webkit-scrollbar {
+	width: 8px;
+}
+
+.battle-page__logs::-webkit-scrollbar-thumb {
+	background: rgba(255,255,255,.15);
+	border-radius: var(--radius-round);
+}
+
+.battle-page__logs::-webkit-scrollbar-thumb:hover {
+	background: rgba(255,255,255,.25);
+}
+
+@media (max-width: 1100px) {
+	.battle-page__arena {
+		grid-template-columns: 1fr;
+	}
+
+	.battle-page__fighter {
+		max-width: 420px;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.battle-page__center {
+		order: 2;
+	}
+
+	.battle-page__fighter:last-child {
+		order: 3;
+	}
+}
+
+@media (max-width: 700px) {
+	.battle-page__sections {
+		grid-template-columns: 1fr;
+	}
+
+	.battle-page__zones {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.battle-page__zone {
+		flex: 1 1 calc(50% - var(--space-sm));
+		height: 44px;
+	}
+
+	.battle-page__center {
+		padding: var(--space-md);
+	}
+
+	.battle-page__logs {
+		max-height: 280px;
+	}
+
+	.battle-page__name {
+		font-size: 24px;
+	}
+
+	.battle-page__round {
+		font-size: 24px;
+	}
+}
