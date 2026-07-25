@@ -1,5 +1,6 @@
 import { changePage } from "./pages-manager.js"
 import { checkBattleStatus } from "../game/savingBattle.js"
+import { updatePlayerName } from "../header/header.js"
 
 export function renderPlayerSelectPage() {
 	return createPlayerSelectWrapper()
@@ -145,6 +146,7 @@ function getPlayers() {
 
 function openPlayer(id) {
 	localStorage.setItem('currentUser', `user_${id}`)
+	updatePlayerName()
 
 	if (checkBattleStatus()) {
 		changePage('arena-fight')

@@ -87,6 +87,19 @@
 	box-shadow: 0 0 0 3px rgba(216, 180, 106, .18);
 }
 
+.header__player-name {
+	font-family: var(--font-title);
+	font-size: 1.75rem;
+	letter-spacing: .08em;
+	color: var(--color-accent);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 200px;
+	user-select: none;
+	text-shadow: 0 0 12px rgba(216, 180, 106, .2);
+}
+
 .displayNone {
 	display: none;
 }
@@ -104,6 +117,10 @@
 	}
 
 	.header__divider {
+		display: none;
+	}
+
+	.header__player-name {
 		display: none;
 	}
 
