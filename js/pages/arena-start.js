@@ -39,7 +39,7 @@ function createTitle() {
 function createDescription() {
 	const description = document.createElement('p')
 	description.classList.add('arena-start-page__description')
-	description.textContent = 'На арене тебя ждут случайные противники. Победи достойного соперника, чтобы доказать свою силу в честном поединке.'
+	description.textContent = 'На арене ждут боя случайные противники. Это лучшее место, чтобы доказать свою силу в честном поединке.'
 
 	return description
 }

@@ -32,7 +32,7 @@ function createPlayerSelectContent() {
 function createTitle() {
 	const title = document.createElement('h1')
 	title.classList.add('player-select-page__title')
-	title.textContent = 'Выбор игрока'
+	title.textContent = 'Список игроков'
 
 	return title
 }
@@ -40,7 +40,7 @@ function createTitle() {
 function createDescription() {
 	const description = document.createElement('p')
 	description.classList.add('player-select-page__description')
-	description.textContent = 'Выберите сохраненного игрока для продолжения'
+	description.textContent = 'Выберите игрока для продолжения'
 
 	return description
 }

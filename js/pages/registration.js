@@ -38,7 +38,7 @@ function createTitle() {
 function createDescription() {
 	const description = document.createElement('p')
 	description.classList.add('registration-page__description')
-	description.textContent = 'Введите имя своего героя, чтобы начать путь в Fantasy Battle'
+	description.textContent = 'Введите имя и начните свой путь в Fantasy Battle'
 
 	return description
 }
