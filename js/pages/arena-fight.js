@@ -184,13 +184,13 @@ function createZoneBlock(title, type, maxSelection) {
 	zones.forEach((zone, index) => {
 		const button = document.createElement('button')
 
-		button.classList.add('battle-page__zone')
+		button.classList.add('btn', 'btn--zone')
 		button.dataset.type = type
 		button.dataset.zone = index
 		button.textContent = zone.title
 
 		button.addEventListener('click', () => {
-			const startButton = document.querySelector('.battle-page__button')
+			const startButton = document.querySelector('.btn--primary')
 			const battle = getBattleState()
 			const currentSelected = selectedZones[type]
 			const zoneIndex = currentSelected.indexOf(index)
@@ -198,21 +198,21 @@ function createZoneBlock(title, type, maxSelection) {
 			if (zoneIndex !== -1) {
 				// Зона уже выбрана — отменяем выбор
 				currentSelected.splice(zoneIndex, 1)
-				button.classList.remove('battle-page__zone--selected')
+				button.classList.remove('btn--zone--selected')
 			} else {
 				// Новая зона — добавляем
 				if (currentSelected.length >= maxSelection) {
 					// Удаляем самую старую выбранную зону (FIFO)
 					const oldest = currentSelected.shift()
 					const oldestButton = zonesContainer.querySelector(
-						`.battle-page__zone[data-zone="${oldest}"]`
+						`.btn--zone[data-zone="${oldest}"]`
 					)
 					if (oldestButton) {
-						oldestButton.classList.remove('battle-page__zone--selected')
+				oldestButton.classList.remove('btn--zone--selected')
 					}
 				}
 				currentSelected.push(index)
-				button.classList.add('battle-page__zone--selected')
+				button.classList.add('btn--zone--selected')
 			}
 
 			// Обновляем счётчик в заголовке
@@ -239,7 +239,7 @@ function createZoneBlock(title, type, maxSelection) {
 function createStartButton() {
 	const button = document.createElement('button')
 
-	button.classList.add('battle-page__button')
+	button.classList.add('btn', 'btn--primary')
 	button.textContent = 'Начать раунд'
 	button.disabled = true
 
@@ -330,10 +330,10 @@ function showBattleResult(lastState) {
 		</h2>
 
 		<div class="battle-page__result-buttons">
-			<button class="battle-page__result-button" data-action="characters">
+			<button class="btn btn--primary" data-action="characters">
 				Выбрать персонажа
 			</button>
-			<button class="battle-page__result-button" data-action="arena">
+			<button class="btn btn--primary" data-action="arena">
 				На арену
 			</button>
 		</div>
@@ -387,7 +387,7 @@ function restoreSelectedZones(page) {
 	const sections = page.querySelectorAll('.battle-page__section')
 
 	sections.forEach(section => {
-		const firstButton = section.querySelector('.battle-page__zone')
+		const firstButton = section.querySelector('.btn--zone')
 		if (!firstButton) return
 
 		const type = firstButton.dataset.type
@@ -396,9 +396,9 @@ function restoreSelectedZones(page) {
 
 		// Восстанавливаем выделение
 		zones.forEach(index => {
-			const button = section.querySelector(`.battle-page__zone[data-zone="${index}"]`)
+			const button = section.querySelector(`.btn--zone[data-zone="${index}"]`)
 			if (button) {
-				button.classList.add('battle-page__zone--selected')
+				button.classList.add('btn--zone--selected')
 			}
 		})
 
@@ -413,7 +413,7 @@ function restoreSelectedZones(page) {
 	})
 
 	// Активируем кнопку, если все зоны выбраны
-	const startButton = page.querySelector('.battle-page__button')
+	const startButton = page.querySelector('.btn--primary')
 	if (startButton) {
 		const battle = getBattleState()
 		if (battle) {

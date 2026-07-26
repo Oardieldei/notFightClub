@@ -55,7 +55,7 @@ function createActions() {
 
 function createCreatePlayerButton() {
 	const button = document.createElement('button')
-	button.classList.add('main-page__button')
+	button.classList.add('btn', 'btn--primary')
 	button.textContent = 'Создать игрока'
 
 	button.addEventListener('click', () => {
@@ -67,7 +67,7 @@ function createCreatePlayerButton() {
 
 function createChoosePlayerButton() {
 	const button = document.createElement('button')
-	button.classList.add('main-page__button')
+	button.classList.add('btn', 'btn--primary')
 	button.textContent = 'Выбрать игрока'
 
 	button.addEventListener('click', () => {

@@ -108,53 +108,6 @@
 	gap: var(--space-xs);
 }
 
-.character-card__button {
-	height: 36px;
-	padding: 0 var(--space-md);
-	border-radius: var(--radius-sm);
-	border: 1px solid var(--color-border);
-	background: transparent;
-	color: var(--color-text);
-	cursor: pointer;
-	transition: var(--transition);
-}
-
-.character-card__button:hover {
-	border-color: var(--color-accent);
-	color: var(--color-accent);
-}
-
-.character-card__button_active {
-	background: var(--color-accent);
-	border-color: var(--color-accent);
-	color: var(--color-bg);
-}
-
-.character-card__button_active:hover {
-	background: #e8c47a;
-	border-color: #e8c47a;
-	color: var(--color-bg);
-}
-
-.character-card__button_arena {
-	background: var(--color-accent);
-	border-color: var(--color-accent);
-	color: var(--color-bg);
-	cursor: default;
-	opacity: .8;
-}
-
-.character-card__button_arena:hover {
-	background: var(--color-accent);
-	border-color: var(--color-accent);
-	color: var(--color-bg);
-}
-
-.character-card__button_delete:hover {
-	border-color: var(--color-danger);
-	color: var(--color-danger);
-}
-
 .characters-empty {
 	display: flex;
 	flex-direction: column;
@@ -202,7 +155,7 @@
 		justify-content: center;
 	}
 
-	.character-card__button {
+	.btn--sm {
 		flex: 1;
 	}
 }

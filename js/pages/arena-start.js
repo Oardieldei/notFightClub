@@ -55,7 +55,7 @@ function createActions() {
 
 function createFindOpponentButton() {
 	const button = document.createElement('button')
-	button.classList.add('arena-start-page__button')
+	button.classList.add('btn', 'btn--primary')
 	button.type = 'button'
 	button.textContent = 'Подобрать противника'
 

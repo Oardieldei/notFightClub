@@ -94,7 +94,7 @@ function createActions() {
 	wrapper.classList.add('create-character-page__actions')
 
 	const cancelButton = document.createElement('button')
-	cancelButton.classList.add('create-character-page__button', 'btn-primary')
+	cancelButton.classList.add('create-character-page__button', 'btn', 'btn--primary')
 	cancelButton.textContent = 'Отмена'
 
 	cancelButton.addEventListener('click', () => {
@@ -105,7 +105,8 @@ function createActions() {
 	createButton.classList.add(
 		'create-character-page__button',
 		'create-character-page__button_primary',
-		'btn-primary'
+		'btn',
+		'btn--primary'
 	)
 
 	createButton.textContent = 'Создать'

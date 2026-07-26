@@ -47,45 +47,6 @@
 	margin-top: var(--space-sm);
 }
 
-.arena-start-page__button {
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	min-width: 260px;
-	height: var(--button-height-lg);
-	padding: 0 var(--space-xl);
-	background: transparent;
-	border: 1px solid var(--color-accent);
-	border-radius: var(--radius-md);
-	font: inherit;
-	font-size: var(--text-md);
-	font-weight: 600;
-	color: var(--color-accent);
-	cursor: pointer;
-	transition:
-		background var(--transition),
-		color var(--transition),
-		border-color var(--transition),
-		transform var(--transition),
-		box-shadow var(--transition);
-}
-
-.arena-start-page__button:hover {
-	background: var(--color-accent);
-	color: var(--color-bg);
-	box-shadow: 0 0 24px rgba(216, 180, 106, .25);
-	transform: translateY(-2px);
-}
-
-.arena-start-page__button:active {
-	transform: translateY(0);
-}
-
-.arena-start-page__button:focus-visible {
-	outline: 2px solid var(--color-accent);
-	outline-offset: 4px;
-}
-
 @media (max-width: 767px) {
 	.arena-start-page {
 		padding: var(--space-lg) 0;
@@ -101,10 +62,5 @@
 
 	.arena-start-page__description {
 		font-size: var(--text-md);
-	}
-
-	.arena-start-page__button {
-		width: 100%;
-		min-width: 0;
 	}
 }

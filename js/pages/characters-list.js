@@ -147,9 +147,9 @@ function createCharacterActions(character, index) {
 
 	let selectButton
 	if (character.isActive) {
-		selectButton = createButton('На арене', 'character-card__button_arena')
+		selectButton = createButton('На арене', 'btn--sm-arena')
 	} else {
-		selectButton = createButton('Выбрать', 'character-card__button_active')
+		selectButton = createButton('Выбрать', 'btn--sm-active')
 		selectButton.addEventListener('click', () => selectCharacter(index))
 	}
 
@@ -159,7 +159,7 @@ function createCharacterActions(character, index) {
 		changePage('edit-character')
 	})
 
-	const deleteButton = createButton('Удалить', 'character-card__button_delete')
+	const deleteButton = createButton('Удалить', 'btn--sm-danger')
 	deleteButton.addEventListener('click', () => deleteCharacter(index))
 
 	actions.append(
@@ -173,7 +173,7 @@ function createCharacterActions(character, index) {
 
 function createButton(text, className = '') {
 	const button = document.createElement('button')
-	button.classList.add('character-card__button')
+	button.classList.add('btn', 'btn--sm')
 
 	if (className) {
 		button.classList.add(className)
@@ -237,7 +237,7 @@ function createCreateButton() {
 	wrapper.classList.add('characters-page__actions')
 
 	const button = document.createElement('button')
-	button.classList.add('characters-page__button', 'btn-primary')
+	button.classList.add('btn', 'btn--primary')
 	button.textContent = 'Создать персонажа'
 
 	button.addEventListener('click', () => {

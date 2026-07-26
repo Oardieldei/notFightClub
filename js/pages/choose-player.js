@@ -91,7 +91,7 @@ function createPlayerItem(player) {
 
 		item.classList.add('player-select-page__item_active')
 
-		const button = document.querySelector('.player-select-page__button')
+		const button = document.querySelector('.btn--primary')
 		button.disabled = false
 		button.dataset.id = player.id
 	})
@@ -110,7 +110,7 @@ function createEmptyMessage() {
 function createSelectButton() {
 	const button = document.createElement('button')
 
-	button.classList.add('player-select-page__button')
+	button.classList.add('btn', 'btn--primary')
 	button.textContent = 'Выбрать игрока'
 	button.disabled = true
 

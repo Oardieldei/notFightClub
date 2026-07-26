@@ -69,7 +69,7 @@ function createInput() {
 
 function createButton() {
 	const button = document.createElement('button')
-	button.classList.add('registration-page__button', 'btn-primary')
+	button.classList.add('registration-page__button', 'btn', 'btn--primary')
 
 	button.textContent = 'Создать игрока'
 

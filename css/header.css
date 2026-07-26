@@ -55,13 +55,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font: inherit;
+	font-family: var(--font-text);
 	font-size: var(--text-md);
+	font-weight: 600;
 	color: var(--color-text);
 	background: transparent;
 	border: 1px solid transparent;
 	border-radius: var(--radius-md);
 	cursor: pointer;
+	user-select: none;
 	transition:
 		background var(--transition),
 		border-color var(--transition),

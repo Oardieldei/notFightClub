@@ -120,7 +120,7 @@
 	color: var(--color-text-muted);
 }
 
-.edit-character-page__error .btn-primary {
+.edit-character-page__error .btn--primary {
 	max-width: 300px;
 }
 

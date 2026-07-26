@@ -23,7 +23,7 @@
 .settings-page__title {
 	margin: 0;
 	font-family: var(--font-title);
-	font-size: var(--title-lg);
+	font-size: var(--title-xl);
 	font-weight: 400;
 	color: var(--color-title);
 	text-align: center;
@@ -120,45 +120,6 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-md);
-}
-
-.settings-page__button {
-	width: 100%;
-	height: var(--button-height);
-	padding: 0 var(--space-lg);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font: inherit;
-	font-size: var(--text-md);
-	font-weight: 600;
-	color: var(--color-text);
-	background: rgba(255, 255, 255, .04);
-	border: 1px solid var(--color-accent);
-	border-radius: var(--radius-md);
-	cursor: pointer;
-	transition: var(--transition);
-}
-
-.settings-page__button:hover {
-	background: rgba(255, 255, 255, .08);
-	border-color: #f2cd82;
-	box-shadow: var(--shadow-hover);
-}
-
-.settings-page__button:active {
-	transform: translateY(0);
-}
-
-.settings-page__button_danger {
-	color: #fff;
-	background: rgba(212, 85, 85, .12);
-	border-color: var(--color-danger);
-}
-
-.settings-page__button_danger:hover {
-	background: rgba(212, 85, 85, .22);
-	border-color: #f06d6d;
 }
 
 @media (max-width: 768px) {

@@ -62,7 +62,7 @@ function createErrorState() {
 	text.textContent = 'Не удалось загрузить данные персонажа'
 
 	const button = document.createElement('button')
-	button.classList.add('btn-primary')
+	button.classList.add('btn', 'btn--primary')
 	button.textContent = 'Вернуться к списку'
 	button.addEventListener('click', () => changePage('characters-list'))
 
@@ -139,7 +139,7 @@ function createActions(editing) {
 	wrapper.classList.add('edit-character-page__actions')
 
 	const cancelButton = document.createElement('button')
-	cancelButton.classList.add('edit-character-page__button', 'btn-primary')
+	cancelButton.classList.add('edit-character-page__button', 'btn', 'btn--primary')
 	cancelButton.textContent = 'Отмена'
 
 	cancelButton.addEventListener('click', () => {
@@ -151,7 +151,8 @@ function createActions(editing) {
 	saveButton.classList.add(
 		'edit-character-page__button',
 		'edit-character-page__button_primary',
-		'btn-primary'
+		'btn',
+		'btn--primary'
 	)
 
 	saveButton.textContent = 'Сохранить'

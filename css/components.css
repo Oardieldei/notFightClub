@@ -1,0 +1,178 @@
+/* ============================================
+   Components — переиспользуемые UI-компоненты
+   ============================================ */
+
+/* ---------- Кнопки ---------- */
+
+/* Базовая кнопка */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-text);
+	font-size: var(--text-md);
+	font-weight: 600;
+	cursor: pointer;
+	user-select: none;
+	transition:
+		background var(--transition),
+		border-color var(--transition),
+		color var(--transition),
+		box-shadow var(--transition),
+		transform var(--transition);
+}
+
+/* Primary — золотая рамка (эталон с главной) */
+.btn--primary {
+	width: 100%;
+	height: var(--button-height-lg);
+	padding: 0 var(--space-lg);
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid var(--color-accent);
+	border-radius: var(--radius-md);
+	color: var(--color-title);
+}
+
+.btn--primary:hover {
+	background: rgba(216, 180, 106, 0.12);
+	border-color: #f0cf8f;
+	box-shadow: 0 0 24px rgba(216, 180, 106, 0.18);
+}
+
+.btn--primary:active {
+	background: var(--color-accent);
+	color: var(--color-bg);
+}
+
+.btn--primary:focus-visible {
+	outline: none;
+	border-color: #f0cf8f;
+	box-shadow:
+		0 0 0 3px rgba(216, 180, 106, 0.2),
+		0 0 24px rgba(216, 180, 106, 0.2);
+}
+
+.btn--primary:disabled {
+	opacity: .45;
+	cursor: default;
+	pointer-events: none;
+}
+
+/* Danger — красная рамка (удаление) */
+.btn--danger {
+	width: 100%;
+	height: var(--button-height-lg);
+	padding: 0 var(--space-lg);
+	background: rgba(212, 85, 85, 0.12);
+	border: 1px solid var(--color-danger);
+	border-radius: var(--radius-md);
+	color: #fff;
+}
+
+.btn--danger:hover {
+	background: rgba(212, 85, 85, 0.22);
+	border-color: #f06d6d;
+	box-shadow: 0 0 20px rgba(212, 85, 85, 0.2);
+}
+
+.btn--danger:active {
+	background: var(--color-danger);
+	color: #fff;
+}
+
+.btn--danger:focus-visible {
+	outline: none;
+	border-color: #f06d6d;
+	box-shadow:
+		0 0 0 3px rgba(212, 85, 85, 0.2),
+		0 0 20px rgba(212, 85, 85, 0.2);
+}
+
+/* Small — для кнопок управления персонажами (36px) */
+.btn--sm {
+	height: 36px;
+	padding: 0 var(--space-md);
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--color-border);
+	background: transparent;
+	color: var(--color-text);
+	font-size: var(--text-sm);
+}
+
+.btn--sm:hover {
+	border-color: var(--color-accent);
+	color: var(--color-accent);
+}
+
+.btn--sm:active {
+	background: rgba(216, 180, 106, 0.12);
+}
+
+/* Small — активный (выбранный персонаж) */
+.btn--sm-active {
+	background: var(--color-accent);
+	border-color: var(--color-accent);
+	color: var(--color-bg);
+}
+
+.btn--sm-active:hover {
+	background: #e8c47a;
+	border-color: #e8c47a;
+	color: var(--color-bg);
+}
+
+/* Small — уже на арене (неактивный) */
+.btn--sm-arena {
+	background: var(--color-accent);
+	border-color: var(--color-accent);
+	color: var(--color-bg);
+	cursor: default;
+	opacity: .8;
+}
+
+.btn--sm-arena:hover {
+	background: var(--color-accent);
+	border-color: var(--color-accent);
+	color: var(--color-bg);
+}
+
+/* Small — удаление (красный) */
+.btn--sm-danger:hover {
+	border-color: var(--color-danger);
+	color: var(--color-danger);
+}
+
+/* Zone — кнопки выбора зон в бою (44px) */
+.btn--zone {
+	height: 44px;
+	padding: 0 var(--space-sm);
+	background: rgba(255,255,255,.04);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	color: var(--color-text);
+	font-weight: 600;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.btn--zone:hover {
+	background: rgba(255,255,255,.08);
+	border-color: var(--color-accent);
+}
+
+.btn--zone:active {
+	background: rgba(216,180,106,.18);
+}
+
+.btn--zone--selected {
+	background: rgba(216,180,106,.18);
+	border-color: var(--color-accent);
+	color: var(--color-accent);
+}
+
+.btn--zone:disabled,
+.btn--zone--disabled {
+	opacity: .35;
+	cursor: default;
+	pointer-events: none;
+}

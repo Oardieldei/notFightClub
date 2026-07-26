@@ -139,24 +139,6 @@
 	max-width: 320px;
 }
 
-.battle-page__result-button {
-	height: var(--button-height-lg);
-	border: 1px solid var(--color-accent);
-	border-radius: var(--radius-md);
-	background: transparent;
-	color: var(--color-accent);
-	font-size: var(--text-md);
-	font-weight: 700;
-	cursor: pointer;
-	transition: background var(--transition), color var(--transition), transform var(--transition);
-}
-
-.battle-page__result-button:hover {
-	background: var(--color-accent);
-	color: #111;
-	transform: translateY(-2px);
-}
-
 .battle-page__round {
 	text-align: center;
 	font-family: var(--font-title);
@@ -188,63 +170,6 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-sm);
-}
-
-.battle-page__zone {
-	height: 44px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0 var(--space-sm);
-	background: rgba(255,255,255,.04);
-	border: 1px solid var(--color-border);
-	border-radius: var(--radius-md);
-	color: var(--color-text);
-	cursor: pointer;
-	user-select: none;
-	font-weight: 600;
-	text-align: center;
-	text-transform: uppercase;
-	transition: background var(--transition), border-color var(--transition), transform var(--transition), opacity var(--transition);
-}
-
-.battle-page__zone:hover {
-	background: rgba(255,255,255,.08);
-	border-color: var(--color-accent);
-}
-
-.battle-page__zone--selected {
-	background: rgba(216,180,106,.18);
-	border-color: var(--color-accent);
-	color: var(--color-accent);
-}
-
-.battle-page__zone--disabled {
-	opacity: .35;
-	cursor: default;
-	pointer-events: none;
-}
-
-.battle-page__button {
-	height: var(--button-height-lg);
-	border: 1px solid var(--color-accent);
-	border-radius: var(--radius-md);
-	background: transparent;
-	color: var(--color-accent);
-	font-size: var(--text-md);
-	font-weight: 700;
-	cursor: pointer;
-	transition: background var(--transition), color var(--transition), transform var(--transition);
-}
-
-.battle-page__button:hover:not(:disabled) {
-	background: var(--color-accent);
-	color: #111;
-}
-
-.battle-page__button:disabled {
-	opacity: .45;
-	cursor: default;
 }
 
 .battle-page__logs {
@@ -349,9 +274,8 @@
 		flex-wrap: wrap;
 	}
 
-	.battle-page__zone {
+	.btn--zone {
 		flex: 1 1 calc(50% - var(--space-sm));
-		height: 44px;
 	}
 
 	.battle-page__center {

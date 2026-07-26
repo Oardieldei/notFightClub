@@ -123,7 +123,7 @@ function createRenameForm() {
 	input.placeholder = 'Введите новое имя'
 
 	const button = document.createElement('button')
-	button.classList.add('settings-page__button')
+	button.classList.add('btn', 'btn--primary')
 	button.textContent = 'Сохранить'
 
 	button.addEventListener('click', () => {
@@ -161,10 +161,7 @@ function createDeleteSection() {
 	actions.classList.add('settings-page__actions')
 
 	const button = document.createElement('button')
-	button.classList.add(
-		'settings-page__button',
-		'settings-page__button_danger'
-	)
+	button.classList.add('btn', 'btn--danger')
 	button.textContent = 'Удалить игрока'
 
 	button.addEventListener('click', () => {
