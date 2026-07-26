@@ -29,7 +29,7 @@ function createSettingsContent() {
 function createTitle() {
 	const title = document.createElement('h1')
 	title.classList.add('settings-page__title')
-	title.textContent = 'Настройки игрока'
+	title.textContent = 'Настройки профиля'
 
 	return title
 }
@@ -155,14 +155,14 @@ function createDeleteSection() {
 
 	const subtitle = document.createElement('h2')
 	subtitle.classList.add('settings-page__subtitle')
-	subtitle.textContent = 'Удаление игрока'
+	subtitle.textContent = 'Удалить пользователя'
 
 	const actions = document.createElement('div')
 	actions.classList.add('settings-page__actions')
 
 	const button = document.createElement('button')
 	button.classList.add('btn', 'btn--danger')
-	button.textContent = 'Удалить игрока'
+	button.textContent = 'Удалить'
 
 	button.addEventListener('click', () => {
 		const confirmed = confirm('Удалить игрока без возможности восстановления?')

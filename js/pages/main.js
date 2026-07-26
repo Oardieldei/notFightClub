@@ -36,7 +36,7 @@ function createTitle() {
 function createDescription() {
 	const description = document.createElement('p')
 	description.classList.add('main-page__description')
-	description.textContent = 'Создайте нового игрока или выберите уже существующего, чтобы начать путь к славе на арене.'
+	description.textContent = 'Создайте нового игрока или выберите из списка, чтобы начать путь к славе.'
 
 	return description
 }
