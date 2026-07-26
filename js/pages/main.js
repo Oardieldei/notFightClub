@@ -28,7 +28,7 @@ function createMainContent() {
 function createTitle() {
 	const title = document.createElement('h1')
 	title.classList.add('main-page__title')
-	title.textContent = 'Добро пожаловать в Fantasy Battle'
+	title.innerHTML = 'Добро пожаловать в <span>Fantasy Battle</span>'
 
 	return title
 }

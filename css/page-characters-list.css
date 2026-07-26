@@ -19,12 +19,13 @@
 .characters-page__title {
 	font-family: var(--font-title);
 	font-size: var(--title-xl);
-	color: var(--color-title);
+	color: var(--color-accent);
 	text-align: center;
 	margin-bottom: var(--space-md);
 }
 
 .characters-page__description {
+	font-family: var(--font-text);
 	color: var(--color-text-muted);
 	text-align: center;
 	font-size: var(--text-lg);
@@ -90,6 +91,7 @@
 .character-card__stats {
 	display: flex;
 	gap: var(--space-md);
+	font-family: var(--font-text);
 	color: var(--color-text-muted);
 	font-size: var(--text-md);
 }
@@ -114,6 +116,7 @@
 	align-items: center;
 	gap: var(--space-lg);
 	text-align: center;
+	font-family: var(--font-text);
 	color: var(--color-text-muted);
 	font-size: var(--text-lg);
 	padding: var(--space-xl) 0;

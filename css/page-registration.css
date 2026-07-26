@@ -24,13 +24,14 @@
 .registration-page__title {
 	font-family: var(--font-title);
 	font-size: var(--title-xl);
-	color: var(--color-title);
+	color: var(--color-accent);
 	text-align: center;
 	margin: 0;
 }
 
 .registration-page__description {
 	max-width: 400px;
+	font-family: var(--font-text);
 	font-size: var(--text-md);
 	color: var(--color-text-muted);
 	text-align: center;

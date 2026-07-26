@@ -25,7 +25,7 @@
 	font-family: var(--font-title);
 	font-size: var(--title-xl);
 	font-weight: 400;
-	color: var(--color-title);
+	color: var(--color-accent);
 	text-align: center;
 }
 
@@ -68,11 +68,13 @@
 }
 
 .settings-page__label {
+	font-family: var(--font-text);
 	color: var(--color-text-muted);
 	font-size: var(--text-md);
 }
 
 .settings-page__value {
+	font-family: var(--font-text);
 	color: var(--color-text);
 	font-size: var(--text-md);
 	font-weight: 600;
@@ -97,7 +99,8 @@
 	width: 100%;
 	height: var(--input-height);
 	padding: 0 var(--space-md);
-	font: inherit;
+	font-family: var(--font-text);
+	font-size: var(--text-md);
 	color: var(--color-text);
 	background: rgba(255, 255, 255, .05);
 	border: 1px solid var(--color-border);

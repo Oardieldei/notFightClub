@@ -31,9 +31,14 @@
 	text-wrap: balance;
 }
 
+.main-page__title span {
+	color: var(--color-accent);
+}
+
 .main-page__description {
 	margin: 0;
 	max-width: 580px;
+	font-family: var(--font-text);
 	font-size: var(--text-lg);
 	line-height: 1.8;
 	color: var(--color-text-muted);
