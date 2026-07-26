@@ -63,6 +63,8 @@ function createInput() {
 	input.type = 'text'
 	input.placeholder = 'Имя игрока'
 	input.maxLength = 30
+	input.name = 'newPlayerName'
+	input.id = 'newPlayerName'
 
 	return input
 }
