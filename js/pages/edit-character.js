@@ -130,6 +130,8 @@ function createNameInput(character) {
 	input.placeholder = 'Имя персонажа'
 	input.type = 'text'
 	input.value = character.name
+	input.name = 'newCharacterName'
+	input.id = 'newCharacterName'
 
 	return input
 }

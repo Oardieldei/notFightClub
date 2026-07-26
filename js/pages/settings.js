@@ -121,6 +121,8 @@ function createRenameForm() {
 	input.type = 'text'
 	input.maxLength = 24
 	input.placeholder = 'Введите новое имя'
+	input.name = 'newPlayerName'
+	input.id = 'newPlayerName'
 
 	const button = document.createElement('button')
 	button.classList.add('btn', 'btn--primary')

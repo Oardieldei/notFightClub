@@ -85,6 +85,8 @@ function createNameInput() {
 	input.classList.add('create-character-page__input')
 	input.placeholder = 'Имя персонажа'
 	input.type = 'text'
+	input.name = 'newCharacterName'
+	input.id = 'newCharacterName'
 
 	return input
 }
