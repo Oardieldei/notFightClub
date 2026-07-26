@@ -17,8 +17,6 @@ function changePlayerStatistic(battle, isWin) {
 
 export function endTheFight(battle, isWin) {
 	changePlayerStatistic(battle, isWin)
-	// отобразить страницу победы/проигрыша
 	clearBattle()
 	saveBattleStatus(false)
-	// ничего не забыл?
 }

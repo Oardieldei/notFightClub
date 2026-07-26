@@ -1,10 +1,3 @@
-/* ============================================
-   Components — переиспользуемые UI-компоненты
-   ============================================ */
-
-/* ---------- Кнопки ---------- */
-
-/* Базовая кнопка */
 .btn {
 	display: inline-flex;
 	align-items: center;
@@ -22,7 +15,6 @@
 		transform var(--transition);
 }
 
-/* Primary — золотая рамка (эталон с главной) */
 .btn--primary {
 	width: 100%;
 	height: var(--button-height-lg);
@@ -58,7 +50,6 @@
 	pointer-events: none;
 }
 
-/* Danger — красная рамка (удаление) */
 .btn--danger {
 	width: 100%;
 	height: var(--button-height-lg);
@@ -88,7 +79,6 @@
 		0 0 20px rgba(212, 85, 85, 0.2);
 }
 
-/* Small — для кнопок управления персонажами (36px) */
 .btn--sm {
 	height: 36px;
 	padding: 0 var(--space-md);
@@ -108,7 +98,6 @@
 	background: rgba(216, 180, 106, 0.12);
 }
 
-/* Small — активный (выбранный персонаж) */
 .btn--sm-active {
 	background: var(--color-accent);
 	border-color: var(--color-accent);
@@ -121,7 +110,6 @@
 	color: var(--color-bg);
 }
 
-/* Small — уже на арене (неактивный) */
 .btn--sm-arena {
 	background: var(--color-accent);
 	border-color: var(--color-accent);
@@ -136,13 +124,11 @@
 	color: var(--color-bg);
 }
 
-/* Small — удаление (красный) */
 .btn--sm-danger:hover {
 	border-color: var(--color-danger);
 	color: var(--color-danger);
 }
 
-/* Zone — кнопки выбора зон в бою (44px) */
 .btn--zone {
 	height: 44px;
 	padding: 0 var(--space-sm);

@@ -196,13 +196,10 @@ function createZoneBlock(title, type, maxSelection) {
 			const zoneIndex = currentSelected.indexOf(index)
 
 			if (zoneIndex !== -1) {
-				// Зона уже выбрана — отменяем выбор
 				currentSelected.splice(zoneIndex, 1)
 				button.classList.remove('btn--zone--selected')
 			} else {
-				// Новая зона — добавляем
 				if (currentSelected.length >= maxSelection) {
-					// Удаляем самую старую выбранную зону (FIFO)
 					const oldest = currentSelected.shift()
 					const oldestButton = zonesContainer.querySelector(
 						`.btn--zone[data-zone="${oldest}"]`
@@ -215,10 +212,8 @@ function createZoneBlock(title, type, maxSelection) {
 				button.classList.add('btn--zone--selected')
 			}
 
-			// Обновляем счётчик в заголовке
 			heading.textContent = `${title} (${currentSelected.length}/${maxSelection})`
 
-			// Проверяем, можно ли активировать кнопку
 			const attackReady = selectedZones.attack.length === battle.playerState.attackZones
 			const defendReady = selectedZones.defend.length === battle.playerState.defendZones
 			startButton.disabled = !(attackReady && defendReady)
@@ -249,13 +244,11 @@ function createStartButton() {
 
 		const result = turn(selectedZones.attack, selectedZones.defend)
 
-		// Сначала обновляем UI — battleState ещё жив
 		saveBattle(battleState)
 		updateFighterHP(battleState.playerState, battleState.enemyState)
 		updateRoundCounter(battleState)
 		appendNewLogs(battleState)
 
-		// Если бой завершился — вызываем endTheFight и показываем результат
 		if (result === 'player_wins') {
 			endTheFight(battleState, true)
 			showBattleResult(battleState)
@@ -272,7 +265,6 @@ function createStartButton() {
 function updateFighterHP(playerState, enemyState) {
 	const fighters = document.querySelectorAll('.battle-page__fighter')
 
-	// Первый блок — игрок, последний — враг
 	const playerFighter = fighters[0]
 	const enemyFighter = fighters[1]
 
@@ -394,7 +386,6 @@ function restoreSelectedZones(page) {
 		const zones = selectedZones[type]
 		const heading = section.querySelector('.battle-page__section-title')
 
-		// Восстанавливаем выделение
 		zones.forEach(index => {
 			const button = section.querySelector(`.btn--zone[data-zone="${index}"]`)
 			if (button) {
@@ -402,7 +393,6 @@ function restoreSelectedZones(page) {
 			}
 		})
 
-		// Восстанавливаем счётчик
 		const count = zones.length
 		if (heading) {
 			const match = heading.textContent.match(/\/(\d+)/)
@@ -412,7 +402,6 @@ function restoreSelectedZones(page) {
 		}
 	})
 
-	// Активируем кнопку, если все зоны выбраны
 	const startButton = page.querySelector('.btn--primary')
 	if (startButton) {
 		const battle = getBattleState()

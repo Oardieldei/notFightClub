@@ -98,6 +98,4 @@ export function turn(attackZonesArray, defendZonesArray) {
 
 function nextTurn(battle) {
 	battle.turnCounter++
-	// отрисовать номер раунда на странице
-	// отсировать логи 
 }
