@@ -36,7 +36,12 @@ export function updatePlayerName() {
 	const currentUser = localStorage.getItem('currentUser')
 	if (currentUser) {
 		const playerData = JSON.parse(localStorage.getItem(currentUser))
-		playerName.textContent = playerData.name
+		if (playerData) {
+			playerName.textContent = playerData.name
+		} else {
+			localStorage.removeItem('currentUser')
+			playerName.textContent = ''
+		}
 	} else {
 		playerName.textContent = ''
 	}
