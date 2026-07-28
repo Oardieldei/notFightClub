@@ -140,6 +140,10 @@
 		gap: var(--space-sm);
 	}
 
+	.header__menu.displayNone {
+		display: none;
+	}
+
 	.header__button {
 		padding: 0;
 	}

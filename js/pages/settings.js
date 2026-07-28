@@ -172,6 +172,7 @@ function createDeleteSection() {
 		if (!confirmed) return
 
 		localStorage.removeItem(localStorage.getItem('currentUser'))
+		localStorage.removeItem('currentUser')
 
 		changePage('main')
 	})
