@@ -23,7 +23,8 @@ function createPlayerSelectContent() {
 		createTitle(),
 		createDescription(),
 		createPlayersList(),
-		createSelectButton()
+		createSelectButton(),
+		createReturnButton()
 	)
 
 	return content
@@ -110,7 +111,7 @@ function createEmptyMessage() {
 function createSelectButton() {
 	const button = document.createElement('button')
 
-	button.classList.add('btn', 'btn--primary')
+	button.classList.add('btn', 'btn--primary', 'btn--margin')
 	button.textContent = 'Выбрать игрока'
 	button.disabled = true
 
@@ -120,6 +121,19 @@ function createSelectButton() {
 		if (!playerID) return
 
 		openPlayer(playerID)
+	})
+
+	return button
+}
+
+function createReturnButton() {
+	const button = document.createElement('button')
+
+	button.classList.add('btn', 'btn--primary')
+	button.textContent = 'Назад'
+
+	button.addEventListener('click', () => {
+		changePage('main')
 	})
 
 	return button

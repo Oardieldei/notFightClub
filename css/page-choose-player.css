@@ -127,6 +127,10 @@
 	filter: none;
 }
 
+.btn--margin {
+	margin-bottom: var(--space-md);
+}
+
 @media (max-width: 768px) {
 	.player-select-page__content {
 		padding: var(--space-lg);
