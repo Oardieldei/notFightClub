@@ -1,0 +1,1 @@
+export const noImage = './img/characters/no-image.jpg'
