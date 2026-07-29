@@ -49,7 +49,8 @@ function createForm() {
 
 	form.append(
 		createInput(),
-		createButton()
+		createRegisterButton(),
+		createReturnButton()
 	)
 
 	return form
@@ -69,7 +70,7 @@ function createInput() {
 	return input
 }
 
-function createButton() {
+function createRegisterButton() {
 	const button = document.createElement('button')
 	button.classList.add('registration-page__button', 'btn', 'btn--primary')
 
@@ -81,6 +82,19 @@ function createButton() {
 		
 		createNewPlayer(input.value)
 		changePage('characters-list')		
+	})
+
+	return button
+}
+
+function createReturnButton() {
+	const button = document.createElement('button')
+
+	button.classList.add('btn', 'btn--primary')
+	button.textContent = 'Назад'
+
+	button.addEventListener('click', () => {
+		changePage('main')
 	})
 
 	return button
